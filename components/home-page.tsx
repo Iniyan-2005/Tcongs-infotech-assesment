@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring, useTransform } from "framer-motion";
 import { ArrowRight, ArrowUpRight, BarChart3, Bot, Braces, Check, ChevronDown, Cloud, Code2, Database, Globe2, Layers3, LayoutTemplate, Mail, MapPin, MessageCircle, MonitorSmartphone, Palette, Quote, Send, ShoppingBag, Sparkles, Star, Target, TrendingUp, Workflow, Zap } from "lucide-react";
 import { useState } from "react";
 import { MotionReveal, fadeUp, stagger } from "./motion-reveal";
@@ -75,6 +75,7 @@ export function HomePage() {
   const progress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   const [activeFaq, setActiveFaq] = useState(0);
   const [activeProject, setActiveProject] = useState(0);
+  const parallaxY = useSpring(useTransform(scrollYProgress, [0, .35], [0, -80]), { stiffness: 90, damping: 24, mass: .35 });
 
   return <div id="top" className="overflow-hidden bg-fog">
     <motion.div style={{ scaleX: progress }} className="fixed inset-x-0 top-0 z-[60] h-1 origin-left bg-gradient-to-r from-cyan via-sky-400 to-coral" />
@@ -95,7 +96,7 @@ export function HomePage() {
               <motion.div variants={fadeUp} className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-slate-200/80 pt-5"><div><p className="text-[26px] font-semibold tracking-[-.06em] text-ink"><MetricCounter value={8} />+</p><p className="mt-1 text-[11px] uppercase tracking-[.16em] text-slate-400">Years of craft</p></div><div className="h-8 w-px bg-slate-200" /><div><p className="text-[26px] font-semibold tracking-[-.06em] text-ink"><MetricCounter value={120} />+</p><p className="mt-1 text-[11px] uppercase tracking-[.16em] text-slate-400">Digital launches</p></div><div className="h-8 w-px bg-slate-200" /><div><p className="text-[26px] font-semibold tracking-[-.06em] text-ink"><MetricCounter value={14} /> markets</p><p className="mt-1 text-[11px] uppercase tracking-[.16em] text-slate-400">Across the globe</p></div></motion.div>
             </motion.div>
           </div>
-          <div className="relative -mr-6 lg:mr-[-80px]"><HeroVisual /></div>
+          <motion.div style={{ y: parallaxY }} className="relative will-change-transform -mr-6 lg:mr-[-80px]"><HeroVisual /></motion.div>
         </div>
       </section>
 

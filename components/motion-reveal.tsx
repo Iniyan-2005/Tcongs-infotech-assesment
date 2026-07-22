@@ -3,7 +3,7 @@
 import { motion, type Variants } from "framer-motion";
 
 const rise: Variants = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 1, y: 14 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 };
 
@@ -21,6 +21,6 @@ export const stagger = {
 };
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 1, y: 12 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
 };
